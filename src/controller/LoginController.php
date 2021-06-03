@@ -3,7 +3,6 @@
 class LoginController{
 
     private $model;
-    private $tableau;
 
 public function __construct()
 {
