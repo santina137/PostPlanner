@@ -1,11 +1,13 @@
 <?php
 include(__DIR__."./header.php");?>
 
-<nav class="nav flex-column">
-    <a class="nav-link active" aria-current="page" href="?page=newPost">Créer une nouvelle publication</a>
-  <a class="nav-link active" aria-current="page" href="?page=posts">Publications</a>
-  <a class="nav-link" href="?page=publishedPosts">Publications postées</a>
-  <a class="nav-link" href="?page=archivedPosts">Publications archivées</a>
+<nav class=left-menu>
+  <ul class=left-menu-items>
+  <li><a href="?page=newPost">Créer une nouvelle publication</a></li> 
+  <li><a href="?page=posts">Publications</a></li> 
+  <li><a href="?page=publishedPosts">Publications postées</a></li> 
+  <li><a href="?page=archivedPosts">Publications archivées</a></li> 
+  </ul>
 </nav>
 
 
@@ -16,12 +18,10 @@ echo $this->title;?>
 <?php $posts=$this->postsList;
 
 foreach($posts as $post):?>
-<div class=card style= width:40rem;margin-left:auto;margin-right:auto>
-<div class=card-body>
+
+<div class="post">
   <p><?=$post['post_text']?></p>
-  <p><?=$post['post_text']?></p>
-  <p><?=$post['post_text']?></p>
-</div>
+  <p><?=$post['post_datetime']?></p>
 </div>
 <div style=padding-top:100px;padding-bottom:100px></div>
 <?php endforeach;?>

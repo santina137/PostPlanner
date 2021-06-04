@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-var_dump($_SESSION);
+
 
 require 'src/service/DbAccess.php';
 require 'src/controller/AccountController.php';

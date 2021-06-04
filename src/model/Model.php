@@ -12,7 +12,8 @@ class Model{
 
     public function getAllPosts(){
 
-        try{
+        try
+        {
             $request=$this->handle->prepare('SELECT * FROM `post`');
             $request->execute();
         
@@ -28,10 +29,17 @@ class Model{
 
     public function findUser($email){
 
+        try
+        {
         $request=$this->handle->prepare('SELECT * FROM `user` WHERE user_email =:user_email');
         $request->execute([ ':user_email' => $email ]);
         $data=$request->fetchAll();
         return $data;
+        }
+        catch(PDOException $e)
+        {
+            var_dump('Erreur lors de la requête sql:'.$e ->getMessage());
+        }
     }
     
 
