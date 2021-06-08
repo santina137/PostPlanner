@@ -23,7 +23,6 @@ foreach($posts as $post):?>
   <p><?=$post['post_text']?></p>
   <p><?=$post['post_datetime']?></p>
 </div>
-<div style=padding-top:100px;padding-bottom:100px></div>
 <?php endforeach;?>
 
 
