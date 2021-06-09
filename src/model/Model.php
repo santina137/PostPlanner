@@ -65,8 +65,8 @@ class Model{
 
         try{
             $request= $this->handle->prepare('INSERT INTO `social_network` (`social_network_name`, `social_network_icon`)
-                                            VALUES (?,?)');
-             $request->execute(array($name,$icon));
+                                            VALUES (:social_network_name, :social_network_icon)');
+             $request->execute([':social_network_name'=>$name,':social_network_icon'=>$icon]);
             }catch(PDOException $e){
                 var_dump('Erreur lors de la requête sql:'.$e ->getMessage());
             }
@@ -101,15 +101,88 @@ class Model{
         ':social_network_id' => $id,
         ':social_network_name' => $name,
         ':social_network_icon' => $icon,
-        
-    ]);
-    }
+        ]);
+         }
     catch(PDOException $e){
         var_dump('Erreur lors de la requête sql:'.$e ->getMessage());
+        }
+
     }
 
- }
+/*********************** requête vers la table hashtag ***************************/
+
+    public function getAllHashtags()
+    {
+        try
+        {
+        $request=$this->handle->prepare('SELECT * FROM `hashtag`');
+        $request->execute();
+    
+        return $request->fetchAll();
+        
+         }
+        catch(PDOException $e){
+        var_dump('Erreur lors de la requête sql:'.$e ->getMessage());
+        }
+        
+    }
+
+    public function addHashtag($name){
+
+        try
+        {
+        $request= $this->handle->prepare('INSERT INTO `hashtag` (`hashtag_name`)
+                                        VALUES (:hashtag_name)');
+         $request->execute([':hashtag_name'=>$name]);
+        }catch(PDOException $e)
+        {
+            var_dump('Erreur lors de la requête sql:'.$e ->getMessage());
+        }
+    
+    }
+
+
+    public function deleteHashtag($id)
+    {
+        try
+        {
+        $request = $this->handle->prepare('DELETE FROM `hashtag` WHERE `hashtag_id` = :hashtag_id');
+         $request->execute([ ':hashtag_id' => $id ]);
+        }
+        catch(PDOException $e)
+        {
+        var_dump('Erreur lors de la requête sql:'.$e ->getMessage());
+        }
+
+
+    }
+
+
+    public function updateHashtag($name,$id)
+    {
+        try
+        {
+        $request = $this->handle->prepare('
+        UPDATE `hashtag`
+         SET
+        `hashtag_name` = :hashtag_name
+         WHERE `hashtag_id` = :hashtag_id ');
+        $request->execute([
+        ':hashtag_id' => $id,
+        ':hashtag_name' => $name
+        ]);
+        }
+        catch(PDOException $e)
+        {
+        var_dump('Erreur lors de la requête sql:'.$e ->getMessage());
+        }
+
+    }
 }
+
+
+
+
 
     
 

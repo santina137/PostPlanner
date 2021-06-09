@@ -4,7 +4,7 @@ include(__DIR__."./header.php");
 $socialNetworks=$this->socialNetworksList;
 ?>
 
-<div class="table">
+<div class="socialNetworksContainer">
 <table class=socialNetworksTable>
 <thead>
     <tr>
@@ -33,7 +33,7 @@ $socialNetworks=$this->socialNetworksList;
         <input type="hidden" name="id" value="<?=$socialNetwork['social_network_id']?>">
         </form>
         <td>
-        <form action="" method="POST">    
+        <form method="POST">    
         <button class="button-icon" type=submit name="delete"><img src="src/public/images/fi-cwluxl-times-wide.svg"></button>
         <input type="hidden" name="id" value="<?=$socialNetwork['social_network_id']?>">
         </form>
