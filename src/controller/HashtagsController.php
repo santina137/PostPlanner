@@ -31,7 +31,7 @@ function manage(){
     header("Refresh:0");
     }
 
-    /***********************Modifier un réseau social***********************/
+    /***********************Modifier un hashtag***********************/
 
     if(isset($_POST['name1'])){
     $this->model->updateHashtag($_POST['name1'],$_POST['id']);

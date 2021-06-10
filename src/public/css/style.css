@@ -76,15 +76,6 @@ html {
 }
 
 
-.post{
-    background-color: #F5F9FD;
-    max-width:40rem;
-    margin:7rem auto 20rem auto;
-    padding: 1rem;
-    border-radius:1rem ;
- 
-}
-
 footer{
     position:absolute;
     background-color:#8C97A3;
@@ -146,7 +137,7 @@ background-color:#dae8f8;
 
 
 .socialNetworksContainer{
-    margin:10rem 15rem 0 15rem;
+    margin:8rem 15rem 0 15rem;
     width:40rem;
     padding:2rem;
     background-color: #F5F9FD;
@@ -195,7 +186,7 @@ background-color:#dae8f8;
 }
 
 .hashtagsContainer{
-    margin:10rem 15rem 0 15rem;
+    margin:8rem 15rem 0 15rem;
     width:40rem;
     padding:2rem;
     background-color: #F5F9FD;
@@ -236,4 +227,92 @@ background-color:#dae8f8;
     color:#479BFB;
 }
 
+.accountContainer{
+    margin:8rem 15rem 0 15rem;
+    width:27rem;
+    padding:2rem;
+    background-color: #F5F9FD;
+    border-radius:1rem;
+}
 
+.accountForm label{
+    display:block;
+    width:8rem;
+    float:left;
+    margin:0.5rem 0;
+}
+
+.accountForm input{
+    margin:0.5rem 0;
+    width:18rem;
+}
+
+.accountStatus p{
+    display:block;
+    width:8rem;
+    float:left;
+    margin:0.5rem 0;
+}
+
+.accountStatus input{
+    margin:0.5rem 0.5rem 0.5rem 0;
+}
+
+.accountStatus label{
+    margin:0.5rem 2rem 0.5rem 0;
+}
+
+.accountContainer .editButton{
+    display:block;
+    width:7rem;
+    background-color: #6514DD;
+    border:none;
+    margin:2rem 0 0 19.5rem;
+    font-size:1rem;
+    text-align:center;
+    color:white;
+    padding:0.3rem 0;
+    box-shadow:2px 2px 5px gray; 
+    border-radius:0.2rem;
+}
+
+.accountContainer .validButton{
+    display:block;
+    width:7rem;
+    background-color:#07D9AE;
+    border:none;
+    margin:2rem 0 0 19.5rem;
+    font-size:1rem;
+    text-align:center;
+    color:white;
+    padding:0.3rem 0;
+    box-shadow:2px 2px 5px gray; 
+    border-radius:0.2rem;
+}
+
+
+
+.accountContainer .createAccountButton{
+    display:block;
+    width:10rem;
+    background-color:#07D9AE;
+    border:none;
+    margin:2rem 0 0 16.5rem;
+    font-size:1rem;
+    text-align:center;
+    color:white;
+    padding:0.3rem 0;
+    box-shadow:2px 2px 5px gray; 
+    border-radius:0.2rem;
+}
+
+
+
+.post{
+    background-color: #F5F9FD;
+    max-width:40rem;
+    margin:7rem auto 20rem auto;
+    padding: 1rem;
+    border-radius:1rem ;
+ 
+}

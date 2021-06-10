@@ -45,6 +45,60 @@ class Model{
         }
     }
     
+
+    public function addNewUser($email,$password,$lastname,$firstname,$status){
+
+        try{
+            $request= $this->handle->prepare('INSERT INTO `user` (`user_email`, `user_password` , `user_lastname` , `user_firstname` , `user_status`)
+                                            VALUES (:user_email, :user_password, :user_lastname, :user_firstname, :user_status)');
+             $request->execute([':user_email'=>$email,':user_password'=>$password, ':user_lastname'=>$lastname, ':user_firstname'=>$firstname, ':user_status'=>$status ]);
+            }catch(PDOException $e){
+                var_dump('Erreur lors de la requête sql:'.$e ->getMessage());
+            }
+        
+    }
+
+
+    public function updateUser($email,$password,$lastname,$firstname,$status,$id)
+    {
+        try{
+        $request = $this->handle->prepare('
+        UPDATE `user`
+        SET
+            `user_email` = :user_email,
+            `user_password` = :user_password,
+            `user_lastname` = :user_lastname,
+            `user_firstname` = :user_firstname,
+            `user_status` = :user_status
+        WHERE `user_id` = :user_id ');
+    $request->execute([
+        ':user_id' => $id,
+        ':user_email'=> $email,
+        ':user_password' => $password,
+        ':user_lastname' => $lastname,
+        ':user_firstname' => $firstname,
+        ':user_status' => $status
+         ]);
+         }
+    catch(PDOException $e){
+        var_dump('Erreur lors de la requête sql:'.$e ->getMessage());
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*********************** requête vers la table social network ***************************/
     public function getAllSocialNetworks(){
         try

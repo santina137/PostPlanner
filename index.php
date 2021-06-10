@@ -12,6 +12,7 @@ require 'src/controller/SocialNetworksController.php';
 require 'src/controller/HashtagsController.php';
 require 'src/controller/NewPostController.php';
 require 'src/controller/LoginController.php';
+require 'src/controller/CreateAccountController.php';
 require 'src/model/Model.php';
 
 
@@ -25,8 +26,8 @@ $route=array(
     "publishedPosts"=>PublishedPostsController::class,
     "archivedPosts"=>ArchivedPostsController::class,
     "socialNetworks"=>SocialNetworksController::class,
-    "hashtags"=>HashtagsController::class
-    
+    "hashtags"=>HashtagsController::class,
+    "createAccount"=>CreateAccountController::class
 );
 
 if ($_SESSION)

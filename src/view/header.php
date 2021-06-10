@@ -25,7 +25,7 @@
           <a href="?page=hashtags">Hashtags</a>
         </li>
         <li>
-          <a href="">Créer un compte</a>
+          <a href="?page=createAccount">Créer un compte</a>
         </li>
       </ul>
 </nav>

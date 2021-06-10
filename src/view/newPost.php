@@ -10,6 +10,21 @@ include(__DIR__."./header.php");?>
   </ul>
 </nav>
 
+
+<div class="newPost">
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
 <?php
 echo $this->title;
 
