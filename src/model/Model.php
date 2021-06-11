@@ -29,6 +29,21 @@ class Model{
         }
 
 
+        public function addNewPost($text,$image,$video,$datetime,$spellingValidation,$archiving,$idUser){
+
+            try{
+                $request= $this->handle->prepare('INSERT INTO `post` (`post_text`, `post_image` , `post_video` , `post_datetime` , `post_spelling_validation` , post_archiving)
+                                                VALUES (?,?,?,?,?,?)');
+                 $request->execute(array($text,$image,$video,$datetime,$spellingValidation,$archiving));
+                }catch(PDOException $e){
+                    var_dump('Erreur lors de la requête sql:'.$e ->getMessage());
+                }
+            
+        }
+
+
+
+
         /*********************** requête vers la table user ***************************/
     public function findUser($email){
 

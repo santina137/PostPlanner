@@ -32,11 +32,11 @@ class AccountController{
        
       
             if ($connectedUser['user_status']==1){
-                $this->status="Administrateur";
+                $this->status="administrateur";
                 
             }
             if ($connectedUser['user_status']==2){
-               $this->status="Lecteur";
+               $this->status="lecteur";
             }
         
 
