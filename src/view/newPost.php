@@ -1,8 +1,8 @@
 <?php
 include(__DIR__."./header.php");?>
 
-<nav class=left-menu>
-  <ul class=left-menu-items>
+<nav class="left-menu">
+  <ul class="left-menu-items">
   <li><a href="?page=newPost">Créer une nouvelle publication</a></li> 
   <li><a href="?page=posts">Publications</a></li> 
   <li><a href="?page=publishedPosts">Publications postées</a></li> 
@@ -14,48 +14,63 @@ include(__DIR__."./header.php");?>
 <?php $hashtags=$this->hashtagsList;
 $socialNetworks=$this->socialNetworksList?>
 
-
-<div class="newPost">
-<form method="POST">
-
-<textarea name="text"></textarea>
+<div class="newPostContainer">
 
 
-<form method="post" enctype="multipart/form-data">
-<input type="file" name="uploaded-file" id="file"><br><br>
-<input type="submit" name="upload">
-</form>
+  <div class="newPostContent">
 
-<?php 
-    if(isset($_POST['upload'])&& !empty($_FILES)){
-        $fileName = $_FILES['uploaded-file']['name'];  
-        $fileExtension = strtolower(strrchr($_FILES['uploaded-file']['name'],"."));
-        $fileTmpName= $_FILES['uploaded-file']['tmp_name'];  
-        $validExtension=array('.jpg','.jpeg','.png','.gif');
-        $location = 'src/public/uploads/'; 
+    <form method="POST" enctype="multipart/form-data">
+
+    <div><textarea name="text" placeholder="Nouvelle publication..."></textarea></div>
+
+    <div>
+        <label for="hashtags-select">Hashtags :</label>
+        <select name="hashtags-select" multiple size=4>
+        <?php foreach($hashtags as $hashtag):?>
+        <option><?=$hashtag['hashtag_name']?></option>
+        <?php endforeach;?>
+        </select>
+    </div>
+
+    <div>
+    <label for="file">Image :</label>
+    <input type="file" name="uploaded-file" id="file">
+    </div>
 
 
-        if(in_array($fileExtension,$validExtension))
-        {
-           
-            if(move_uploaded_file($fileTmpName, $location.$fileName))
-            {
-            echo 'Image envoyé avec succès';
-            }
-            else 
-            {
-            echo 'Une erreur est survenue lors de l\'envoi du fichier';
-            }
+    <div>
+      <label for id="urlVideo">Url vidéo :</label>
+      <input type="url" name="video" id="urlVideo">
+    </div>
 
-        } else
-        {
-          echo "Le fichier n'est pas une image.";
-        }
+  </div>
 
-      }
 
+
+
+  <div class="statusNewPost">
+
+      <div>    
+      A publier le <input type="datetime-local" name="datetime">
+      </div>
       
-?>
+      <div class="checkbox">
+      sur 
+      <?php foreach($socialNetworks as $socialNetwork):?>
+      <input type="checkbox" id="socialNetworkIcons" name="socialNetworkIcons">
+      <label for="socialNetworkIcons"><img class="social-icon" src="<?=$socialNetwork['social_network_icon']?>"></label>
+      <?php endforeach;?>
+      </div>
+
+      <div> 
+      <input type="hidden" name="spellingValidation" value="1">
+      <input type="hidden" name="archiving" value="1">
+      <button type="submit" name="savePost">Enregistrer la publication</button>
+      </div> 
+  </form>
+
+  </div>
+
 
 <?php
 /*<form method="POST" enctype="multipart/form-data">
@@ -118,51 +133,11 @@ echo "Transfert terminé!";
 
 
 
-<label>Url vidéo :</label>
-<input type="url" name="video">
-
-</div>
 
 
 
-
-<div class="saveNewPost">
-A publier le <input type="datetime-local" name="datetime"> sur
-
-<input type="hidden" name="spellingValidation" value="0">
-<input type="hidden" name="archiving" value="0">
-<button type="submit" name="savePost">Enregistrer la publication</button>
-
-</form>
 
 
 </div>
-
-
-
-
-
-
-<select multiple size=4>
-<?php foreach($hashtags as $hashtag):?>
-<option><?=$hashtag['hashtag_name']?></option>
-<?php endforeach;?>
-</select>
-
-<?php foreach($socialNetworks as $socialNetwork):?>
-<input type="checkbox" id="socialNetworkIcons" name="scales">
-<label for="socialNetworkIcons"><img class="social-icon" src="<?=$socialNetwork['social_network_icon']?>"></label>
-<?php endforeach;?>
-
-
-
-
-
-
-
-
-
 <?php
-echo $this->title;
-
 include(__DIR__."./footer.php");

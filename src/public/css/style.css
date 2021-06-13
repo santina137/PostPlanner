@@ -53,6 +53,7 @@ html {
     box-shadow:2px 2px 5px gray; 
     font-size:0.9rem;
     z-index:-1;
+
 }
 
 .left-menu-items{
@@ -309,27 +310,92 @@ background-color:#dae8f8;
 
 
 
+.newPostContent{
+    background-color: #F5F9FD;
+    max-width:40rem;
+    margin:7rem auto 0 auto;
+    padding: 2rem;
+    border-radius:1rem ;
+}
+
+
+.newPostContent div{
+    padding:1rem;
+}
+
+
+.newPostContent textarea{
+    width:39rem;
+    height:10rem;
+    margin:0 auto 1rem auto;
+    
+}
+
+.newPostContent label{
+    display:block;
+    width: 7rem;
+    float:left;
+}
+
+.newPostContent input{
+    width:20rem;
+}
+
+
+.statusNewPost{
+    max-width:40rem;
+    margin:0 auto 1rem auto;
+    padding: 1rem 2rem 1rem 2rem;
+
+}
+
+.statusNewPost div{
+padding:1rem;
+}
+
+.statusNewPost .checkbox label{
+    padding-right:1rem;
+}
+
+
+.statusNewPost button{
+    display:block;
+    width:14rem;
+    background-color:#1A7FF1;
+    border:none;
+    margin:2rem 0 0 24rem;
+    font-size:1rem;
+    text-align:center;
+    color:white;
+    padding:0.3rem 0;
+    box-shadow:2px 2px 5px gray; 
+    border-radius:0.2rem;
+}
+
+
 .post{
     background-color: #F5F9FD;
     max-width:40rem;
-    margin:7rem auto 20rem auto;
-    padding: 1rem;
+    margin:7rem auto 0 auto;
+    padding: 2rem;
     border-radius:1rem ;
  
 }
 
-.newPost{
-    background-color: #F5F9FD;
-    max-width:40rem;
-    margin:7rem auto 20rem auto;
-    padding: 1rem;
-    border-radius:1rem ;
+.post p{
+    text-align:justify;
 }
 
-.saveNewPost{
+.post img{
     max-width:40rem;
-    margin:7rem auto 20rem auto;
-    padding: 1rem;
-    border-radius:1rem ;
+    width:auto;
+    height:auto;
+}
+
+.statusPost{
+    max-width:40rem;
+    margin:0 auto 1rem auto;
+    padding: 1rem 2rem 1rem 2rem;
 
 }
+

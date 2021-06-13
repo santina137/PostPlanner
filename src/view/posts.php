@@ -11,19 +11,28 @@ include(__DIR__."./header.php");?>
 </nav>
 
 
-<?php
-echo $this->title;?>
-
 
 <?php $posts=$this->postsList;
-
-foreach($posts as $post):?>
+      
+foreach ($posts as $post):?>
 
 <div class="post">
-  <p><?=$post['post_text']?></p>
-  <p><?=$post['post_datetime']?></p>
+  <div><p><?=$post['post_text']?></p></div>
+  <div><img src=<?=$post['post_image']?>></div> 
 </div>
-<?php endforeach;?>
+
+<div class=statusPost>
+
+<p>A publier le <?=$post['post_datetime']?></p> 
+<p> sur </p>
+
+<p>Editée par <?=$post['id_user']?></p>
+
+<p>Statut:</p>
+</div>
+
+<?php endforeach?>
+
 
 
 <?php

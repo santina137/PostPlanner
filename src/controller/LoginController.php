@@ -23,6 +23,8 @@ function manage(){
     {
         echo 'Connexion effectuée';
         $_SESSION['email']=$email;
+
+        $_SESSION['id']=$tab[0]['user_id'];
         header('Location: index.php');
     }
 

@@ -5,11 +5,12 @@ class PostsController{
 private $title;
 private $model;
 private $postsList;
+private $user;
 
 
 public function __construct()
 {
-    $this->title="Publications";
+
     $this->model=new Model();
     
 }
@@ -20,8 +21,11 @@ function manage()
 
 
     $this->postsList=$this->model->getAllPosts();
-    include(__DIR__."./../view/posts.php");
     
+
+    
+
+    include(__DIR__."./../view/posts.php");
 
 }
 

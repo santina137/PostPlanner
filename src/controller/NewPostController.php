@@ -1,6 +1,6 @@
 <?php
 
-class NewPostController{
+class NewPostController {
 
 private $title;
 private $hashtagsList;
@@ -21,15 +21,42 @@ function manage(){
     $this->socialNetworksList=$this->model->getAllSocialNetworks();
 
 
-    if (isset($_POST['text']) && isset($_POST['datetime']) && isset($_POST['savePost']))
+    if(isset($_POST['savePost']) && !empty($_FILES)){
+        $fileName = $_FILES['uploaded-file']['name'];  
+        $fileExtension = strtolower(strrchr($_FILES['uploaded-file']['name'],"."));
+        $fileTmpName= $_FILES['uploaded-file']['tmp_name'];  
+        $validExtension=array('.jpg','.jpeg','.png','.gif');
+        $location = 'src/public/uploads/'; 
+
+
+        if(in_array($fileExtension,$validExtension))
         {
-            $this->model->addNewPost($_POST['text'],$_POST['image'],$_POST['video'],$_POST['datetime'],$_POST['spellingValidation'],$_POST['archiving']);
-        
+           
+            if(move_uploaded_file($fileTmpName, $location.$fileName))
+            {
+            echo 'Image envoyé avec succès';
+            }
+            else
+             {
+          echo "Le fichier n'est pas une image.";
+            }
+
+        }
+
+    }
+
+
+    if (isset($_POST['text']) && !empty($_POST['text'])
+    && isset($_POST['datetime']) && isset($_POST['savePost']))
+        {
+            $this->model->addNewPost($_POST['text'],$location.$fileName,$_POST['video'],$_POST['datetime'],$_POST['spellingValidation'],$_POST['archiving'],$_SESSION['id']);
         }
 
 
     include(__DIR__."./../view/newPost.php");
 
+      
+    
 
-}
+    }
 }
