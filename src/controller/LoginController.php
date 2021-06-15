@@ -2,11 +2,11 @@
 
 class LoginController{
 
-    private $model;
+    private $userRepository;
 
 public function __construct()
 {
-    $this->model=new Model();
+    $this->userRepository=new UserRepository;
 }
 
 
@@ -15,16 +15,19 @@ function manage(){
    if (isset($_POST['submit']))
    {
     $email=$_POST['email'];
-    $password=$_POST['password'];
+    $pass=$_POST['password'];
 
-    $tab=$this->model->findUser($email);
 
-    if ($tab[0]['user_password']=== $password)
+    $tab=$this->userRepository->findUserByEmail($email);
+
+
+if (password_verify($pass, $tab[0]->getPassword()))
     {
         echo 'Connexion effectuée';
         $_SESSION['email']=$email;
 
-        $_SESSION['id']=$tab[0]['user_id'];
+        $_SESSION['id']=$tab[0]->getId();
+        
         header('Location: index.php');
     }
 

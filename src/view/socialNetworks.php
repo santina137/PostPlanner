@@ -2,6 +2,7 @@
 include(__DIR__."./header.php");
 
 $socialNetworks=$this->socialNetworksList;
+
 ?>
 
 <div class="socialNetworksContainer">
@@ -15,27 +16,27 @@ $socialNetworks=$this->socialNetworksList;
 <tbody>
 <?php foreach($socialNetworks as $socialNetwork):?>
     
-        <?php if (isset($_POST["edit"]) && ($_POST["id"] === $socialNetwork['social_network_id'])):?>
+        <?php if (isset($_POST["edit"]) && ($_POST["id"] === $socialNetwork->getId())):?>
         <tr>
         <form method="POST">
-        <td><input type=text name="name1" value=<?=$socialNetwork['social_network_name']?>></td>
-        <td><input type=url name="icon1" value=<?=$socialNetwork['social_network_icon']?>></td>
+        <td><input type=text name="name1" value=<?=$socialNetwork->getName()?>></td>
+        <td><input type=url name="icon1" value=<?=$socialNetwork->getIcon()?>></td>
         <td><button class="button-icon" type=submit name="editSocialMedia"><img src="src/public/images/fi-cwluxl-check.svg"></button>
-        <input type="hidden" name="id" value="<?=$socialNetwork['social_network_id']?>">
+        <input type="hidden" name="id" value="<?=$socialNetwork->getId()?>">
         </form>
         </tr>
     <?php else:?>
         <tr>
-        <td><?=$socialNetwork['social_network_name']?></td>
-        <td><img class="social-icon" src="<?=$socialNetwork['social_network_icon']?>"></td>
+        <td><?=$socialNetwork->getName()?></td>
+        <td><img class="social-icon" src="<?=$socialNetwork->getIcon()?>"></td>
         <form method="POST">
         <td><button class="button-icon" type="submit" name="edit"><img src="src/public/images/fi-cwluxl-pen.svg"></button></td>
-        <input type="hidden" name="id" value="<?=$socialNetwork['social_network_id']?>">
+        <input type="hidden" name="id" value="<?=$socialNetwork->getId()?>">
         </form>
         <td>
         <form method="POST">    
         <button class="button-icon" type=submit name="delete"><img src="src/public/images/fi-cwluxl-times-wide.svg"></button>
-        <input type="hidden" name="id" value="<?=$socialNetwork['social_network_id']?>">
+        <input type="hidden" name="id" value="<?=$socialNetwork->getId()?>">
         </form>
         </td>
         </tr>

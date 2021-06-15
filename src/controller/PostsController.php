@@ -2,16 +2,18 @@
 
 class PostsController{
 
-private $title;
-private $model;
+private $postRepository;
+private $hashtagPostRepository;
 private $postsList;
-private $user;
+private $hashtagsIdList;
+
 
 
 public function __construct()
 {
 
-    $this->model=new Model();
+    $this->postRepository= new PostRepository();
+    $this->hashtagPostRepository= new HashtagPostRepository();
     
 }
 
@@ -20,9 +22,16 @@ function manage()
 {
 
 
-    $this->postsList=$this->model->getAllPosts();
+    
+    $posts=$this->postsList=$this->postRepository->getAllPosts();
+ 
+
     
 
+    $hashtags=$this->hashtagsIdList=$this->hashtagPostRepository->findHashtagByIdPost($post->getId());
+    var_dump($hashtags);
+
+    
     
 
     include(__DIR__."./../view/posts.php");

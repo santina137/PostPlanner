@@ -14,25 +14,25 @@ $hashtags=$this->hashtagsList;
 <tbody>
 <?php foreach($hashtags as $hashtag):?>
     
-        <?php if (isset($_POST["edit"]) && ($_POST["id"] === $hashtag['hashtag_id'])):?>
+        <?php if (isset($_POST["edit"]) && ($_POST["id"] === $hashtag->getId())):?>
         <tr>
         <form method="POST">
-        <td><input type=text name="name1" value=<?=$hashtag['hashtag_name']?>></td>
+        <td><input type=text name="name1" value=<?=$hashtag->getName()?>></td>
         <td><button class="button-icon" type=submit name="editHashtag"><img src="src/public/images/fi-cwluxl-check.svg"></button>
-        <input type="hidden" name="id" value="<?=$hashtag['hashtag_id']?>">
+        <input type="hidden" name="id" value="<?=$hashtag->getId()?>">
         </form>
         </tr>
     <?php else:?>
         <tr>
-        <td><?=$hashtag['hashtag_name']?></td>
+        <td><?=$hashtag->getName()?></td>
         <form method="POST">
         <td><button class="button-icon" type="submit" name="edit"><img src="src/public/images/fi-cwluxl-pen.svg"></button></td>
-        <input type="hidden" name="id" value="<?=$hashtag['hashtag_id']?>">
+        <input type="hidden" name="id" value="<?=$hashtag->getId()?>">
         </form>
         <td>
         <form method="POST">    
         <button class="button-icon" type=submit name="delete"><img src="src/public/images/fi-cwluxl-times-wide.svg"></button>
-        <input type="hidden" name="id" value="<?=$hashtag['hashtag_id']?>">
+        <input type="hidden" name="id" value="<?=$hashtag->getId()?>">
         </form>
         </td>
         </tr>

@@ -12,17 +12,17 @@ $status=$this->status;
 <form method="POST">
 <fieldset class="accountForm">
     <label for="email">Email :</label>
-    <input type="email" id="email" name="email" value="<?=$connectedUser['user_email']?>" required>
+    <input type="email" id="email" name="email" value="<?=$connectedUser->getEmail()?>" required>
     <label for="password">Mot de passe :</label>
-    <input type="password" id="password" name="password" value="<?=$connectedUser['user_password']?>"required>
+    <input type="password" id="password" name="password" value="<?=$connectedUser->getPassword()?>"required>
     <label for="lastname">Nom :</label>
-    <input type="text" id="lastname" name="lastname" value="<?=$connectedUser['user_lastname']?>"required>
+    <input type="text" id="lastname" name="lastname" value="<?=$connectedUser->getLastname()?>"required>
     <label for="firstname">Prénom :</label>
-    <input type="text" id="firstname" name="firstname" value="<?=$connectedUser['user_firstname']?>"required>
+    <input type="text" id="firstname" name="firstname" value="<?=$connectedUser->getFirstname()?>"required>
     <label for="status">Statut :</label>
     <input type="text" id="status" name="status" value="<?=$status?>" disabled>
     </fieldset>
-   <input type="hidden" name="id" value="<?=$connectedUser['user_id']?>">
+   <input type="hidden" name="id" value="<?=$connectedUser->getId()?>">
    <button class="validButton" type="submit" name="validAccount">Valider</button>
 </form>
 
@@ -30,13 +30,13 @@ $status=$this->status;
 <form method="POST">
 <fieldset class="accountForm" disabled>
     <label for="email">Email :</label>
-    <input type="email" id="email" name="email" value="<?=$connectedUser['user_email']?>">
+    <input type="email" id="email" name="email" value="<?=$connectedUser->getEmail()?>">
     <label for="password">Mot de passe :</label>
-    <input type="password" id="password" name="password" value="<?=$connectedUser['user_password']?>">
+    <input type="password" id="password" name="password" value="<?=$connectedUser->getPassword()?>">
     <label for="lastname">Nom :</label>
-    <input type="text" id="lastname" name="lastname" value="<?=$connectedUser['user_lastname']?>">
+    <input type="text" id="lastname" name="lastname" value="<?=$connectedUser->getLastname()?>">
     <label for="firstname">Prénom :</label>
-    <input type="text" id="firstname" name="firstname" value="<?=$connectedUser['user_firstname']?>">
+    <input type="text" id="firstname" name="firstname" value="<?=$connectedUser->getFirstname()?>">
     <label for="status">Statut :</label>
     <input type="text" id="status" name="status" value="<?=$status;?>">
 </fieldset>

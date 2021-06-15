@@ -13,7 +13,13 @@ require 'src/controller/HashtagsController.php';
 require 'src/controller/NewPostController.php';
 require 'src/controller/LoginController.php';
 require 'src/controller/CreateAccountController.php';
-require 'src/model/Model.php';
+require 'src/model/SocialNetworkRepository.php';
+require 'src/model/HashtagRepository.php';
+require 'src/model/UserRepository.php';
+require 'src/model/PostRepository.php';
+require 'src/model/NetworkPostRepository.php';
+require 'src/model/HashtagPostRepository.php';
+
 
 
 $page=filter_input(INPUT_GET, "page");

@@ -2,23 +2,33 @@
 
 class NewPostController {
 
-private $title;
+private $socialNetworkRepository;
+private $hashtagRepository;    
+private $postRepository;
+private $hashtagPostRepository;
+private $networkPostRepository;
 private $hashtagsList;
 private $socialNetworksList;
+private $lastId;
 
 
 public function __construct()
 {
-    $this->title="Créer une nouvelle publication";
-    $this->model=new Model();
+
+    $this->postRepository= new PostRepository();
+    $this->socialNetworkRepository= new SocialNetworkRepository;
+    $this->hashtagRepository= new HashtagRepository;
+    $this->hashtagPostRepository= new HashtagPostRepository;
+    $this->networkPostRepository= new NetworkPostRepository;
+
 }
 
 
 function manage(){
 
-    $this->hashtagsList=$this->model->getAllHashtags();
+    $this->hashtagsList=$this->hashtagRepository->getAll();
 
-    $this->socialNetworksList=$this->model->getAllSocialNetworks();
+    $this->socialNetworksList=$this->socialNetworkRepository->getAll();
 
 
     if(isset($_POST['savePost']) && !empty($_FILES)){
@@ -28,10 +38,12 @@ function manage(){
         $validExtension=array('.jpg','.jpeg','.png','.gif');
         $location = 'src/public/uploads/'; 
 
+        
 
         if(in_array($fileExtension,$validExtension))
         {
-           
+        
+    
             if(move_uploaded_file($fileTmpName, $location.$fileName))
             {
             echo 'Image envoyé avec succès';
@@ -45,12 +57,47 @@ function manage(){
 
     }
 
+   
 
+    
+
+  
     if (isset($_POST['text']) && !empty($_POST['text'])
-    && isset($_POST['datetime']) && isset($_POST['savePost']))
+    && isset($_POST['datetime']) && isset($_POST['socialNetworkIcons']) && isset($_POST['savePost']))
         {
-            $this->model->addNewPost($_POST['text'],$location.$fileName,$_POST['video'],$_POST['datetime'],$_POST['spellingValidation'],$_POST['archiving'],$_SESSION['id']);
+           
+            if ($fileName!=0){
+                $image=$location.$fileName;
+            } else
+            {
+                $image='';
+            }
+        
+
+            $this->postRepository->addNewPost($_POST['text'],$image,$_POST['video'],$_POST['datetime'],$_POST['spellingValidation'],$_POST['archiving'],$_SESSION['id']);
         }
+
+    $lastId=$this->lastId=$this->postRepository->lastInsertId();
+
+ 
+    
+    if (isset($_POST['hashtagSelect']))
+    {
+        foreach($_POST['hashtagSelect'] as $hashtagSelect)
+        {
+            $this->hashtagPostRepository->addHashtagPost($lastId,$hashtagSelect);
+        } 
+    }
+
+    if (isset($_POST['socialNetworkIcons']))
+    {
+        foreach($_POST['socialNetworkIcons'] as $socialNetworkIcon)
+        $this->networkPostRepository->addNetworkPost($lastId,$socialNetworkIcon);
+    }
+
+
+
+
 
 
     include(__DIR__."./../view/newPost.php");
