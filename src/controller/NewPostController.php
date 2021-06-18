@@ -66,8 +66,10 @@ function manage(){
     && isset($_POST['datetime']) && isset($_POST['socialNetworkIcons']) && isset($_POST['savePost']))
         {
            
-            if ($fileName!=0){
+            if ($fileName!="")
+            {
                 $image=$location.$fileName;
+                
             } else
             {
                 $image='';

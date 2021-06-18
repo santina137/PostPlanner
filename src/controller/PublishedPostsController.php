@@ -2,18 +2,21 @@
 
 class PublishedPostsController{
 
-private $title;
+    private $postRepository;
+    private $publishedPostsList;
 
-public function __construct()
-{
-    $this->title="Publications postées";
-}
-
-
-function manage(){
-
-    include(__DIR__."./../view/publishedPosts.php");
+    public function __construct()
+    {
+        $this->postRepository=new PostRepository();
+    }
 
 
-}
+    function manage(){
+
+        $this->publishedPostsList=$this->postRepository->getAllPublishedPosts();
+
+        include(__DIR__."./../view/publishedPosts.php");
+
+
+    }   
 }

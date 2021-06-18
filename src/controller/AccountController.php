@@ -37,7 +37,6 @@ if (isset($_POST['email'])){
 }
 
 
-
  include(__DIR__."./../view/account.php");
 
 

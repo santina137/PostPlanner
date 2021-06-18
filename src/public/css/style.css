@@ -1,7 +1,14 @@
-html {
+html,body{
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height:100%;
     font-size:16px;
+    position: relative;
+    margin:0;
+    padding:0;
+    
 }
+
+
 
 
 .menu {
@@ -13,7 +20,7 @@ html {
     top:0;
     width:100%;
     box-shadow:2px 2px 10px gray; 
-    z-index:0;
+    z-index:-1;
     
     
 }
@@ -81,10 +88,11 @@ html {
 
 footer{
     position:absolute;
+    margin-top:40rem;
     background-color:#8C97A3;
     padding:1.2rem;
     width:100%;
-    margin-top: 9rem;
+
 }
 
 #title{
@@ -374,8 +382,9 @@ padding:1rem;
 }
 
 .postContainer{
-    margin:20rem auto;
-    width:42rem;
+    margin:10rem auto 20rem auto;
+    width:60rem;
+    font-size: 14px;
 }
 
 .postContent{
@@ -384,7 +393,7 @@ padding:1rem;
     margin:7rem auto 0 auto;
     padding: 2rem;
     border-radius:1rem ;
-    font-size: 14px;;
+    
  
 }
 
@@ -411,7 +420,7 @@ padding:1rem;
 }
 
 .postContent iframe{
-    margin: 0 1.5rem;
+    margin: auto;
 }
 
 .statusPost{
@@ -419,7 +428,6 @@ padding:1rem;
     max-width:40rem;
     margin:0 auto 1rem auto;
     padding: 1rem 2rem 2rem 2rem;
-    
 
 }
 
@@ -472,6 +480,13 @@ padding:1rem;
 .statusPost div{
   display:block;
   margin: 1rem;
+
+}
+
+.buttons-post{
+    display:flex;
+    flex-direction: column;
+    float:right;
 
 }
 

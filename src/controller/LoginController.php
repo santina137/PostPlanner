@@ -27,6 +27,8 @@ if  (password_verify($pass, $tab[0]->getPassword()))
         $_SESSION['email']=$email;
         
         $_SESSION['id']=$tab[0]->getId();
+        $_SESSION['status']=$tab[0]->getStatus();
+        
         
         header('Location: index.php');
     }

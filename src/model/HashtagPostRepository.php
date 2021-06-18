@@ -28,21 +28,5 @@ class HashtagPostRepository{
     
     }
 
-    public function findHashtagByIdPost($idPost){
-
-        try
-        {
-        $request=$this->handle->prepare('SELECT * FROM `hashtag_post` WHERE hashtag_post_id_post =:hashtag_post_id_post');
-        $request->execute([ ':hashtag_post_id_post' => $idPost ]);
-        $data=$request->fetchAll(PDO::FETCH_FUNC, 'HashtagPost::create');
-        
-        return $data;
-        
-        }
-        catch(PDOException $e)
-        {
-            var_dump('Erreur lors de la requête sql:'.$e ->getMessage());
-        }
-    }
 
 }

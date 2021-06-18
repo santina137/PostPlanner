@@ -10,15 +10,15 @@
 </head>
 <body>
     
-
+<?php if ($_SESSION['status']==="1"):?>
 <nav class="menu">
       <ul class=menu-items>
-      <li>
+        <li>
           <a href="?page=account">Mon compte</a>
-        </li>
         <li>
           <a href="?page=posts">Publications</a>
         </li>
+        <li>
           <a href="?page=socialNetworks">Réseaux sociaux</a>
         </li>
         <li>
@@ -27,8 +27,26 @@
         <li>
           <a href="?page=createAccount">Créer un compte</a>
         </li>
+        <li>
+           <a href="?page=logout">Se déconnecter</a>
+        </li>
       </ul>
 </nav>
+<?php elseif($_SESSION['status']==="2"):?>
+  <nav class="menu">
+      <ul class=menu-items>
+        <li>
+          <a href="?page=account">Mon compte</a>
+        <li>
+          <a href="?page=posts">Publications</a>
+        </li>
+        <li>
+           <a href="?page=logout">Se déconnecter</a>
+        </li>
+      </ul>
+</nav>
+<?php endif;?>
+
 
   
 

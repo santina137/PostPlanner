@@ -12,6 +12,7 @@ require 'src/controller/SocialNetworksController.php';
 require 'src/controller/HashtagsController.php';
 require 'src/controller/NewPostController.php';
 require 'src/controller/LoginController.php';
+require 'src/controller/LogoutController.php';
 require 'src/controller/CreateAccountController.php';
 require 'src/model/SocialNetworkRepository.php';
 require 'src/model/HashtagRepository.php';
@@ -33,10 +34,12 @@ $route=array(
     "archivedPosts"=>ArchivedPostsController::class,
     "socialNetworks"=>SocialNetworksController::class,
     "hashtags"=>HashtagsController::class,
-    "createAccount"=>CreateAccountController::class
+    "createAccount"=>CreateAccountController::class,
+    "logout"=>LogoutController::class
 );
 
-if ($_SESSION)
+
+if (($_SESSION) && $_SESSION['status']==="1")
 {
     foreach($route as $routeValue=>$className)
     {
@@ -47,17 +50,59 @@ if ($_SESSION)
         break;
         }   
     }
+    if (!isset($controller))
+    {
+        $controller= new PostsController();
+        $controller->manage();
+    }
+    
 }
+
+else if ($_SESSION && ($_SESSION['status']==="2"))
+    {
+
+        switch($page)
+        {
+            case 'login':
+                $controller=new LoginController();
+                $controller->manage();
+                break;
+            case 'account':
+                $controller=new AccountController();
+                $controller->manage();
+                break;
+            case 'posts':
+                $controller=new PostsController();
+                $controller->manage();
+                break;
+            case 'publishedPosts':
+                $controller=new PublishedPostsController();
+                $controller->manage();
+                break;
+            case 'archivedPosts':
+                $controller=new ArchivedPostsController();
+                $controller->manage();
+                break;
+            case 'logout';
+                $controller=new LogoutController();
+                $controller->manage();
+        }
+        
+        if (!isset($controller))
+        {
+            $controller= new PostsController();
+            $controller->manage();
+        }
+        
+
+
+
+    }
+
 else
 {
 $controller= new LoginController();
 $controller->manage();
-}
-
-if (!isset($controller))
-{
-    $controller= new PostsController();
-    $controller->manage();
 }
 
 

@@ -1,6 +1,7 @@
 <?php
 include(__DIR__."./header.php");?>
 
+<?php if ($_SESSION['status']==="1"):?>
 <nav class=left-menu>
   <ul class=left-menu-items>
   <li><a href="?page=newPost">Créer une nouvelle publication</a></li> 
@@ -9,6 +10,16 @@ include(__DIR__."./header.php");?>
   <li><a href="?page=archivedPosts">Publications archivées</a></li> 
   </ul>
 </nav>
+<?php elseif ($_SESSION['status']==="2"):?>
+  <nav class=left-menu>
+  <ul class=left-menu-items>
+  <li><a href="?page=posts">Publications</a></li> 
+  <li><a href="?page=publishedPosts">Publications postées</a></li> 
+  <li><a href="?page=archivedPosts">Publications archivées</a></li> 
+  </ul>
+</nav>
+<?php endif?>
+
 
 
 <?php $posts=$this->postsList;
@@ -18,6 +29,24 @@ $socialNetworks=$this->postRepository->findSocialNetworkByPost($post->getId())?>
 
 
 <div class=postContainer>
+
+  <div class="buttons-post">
+    <form method="POST">
+      <button type=submit name="modify">Modifier</button>
+    </form>
+
+    <form method="POST">
+      <button>Dupliquer</button>
+    </form>
+
+    <form method="POST">
+      <input type="hidden" name="postId" value=<?=$post->getId()?>>
+      <input type=hidden name="archived" value="2">
+      <button type="submit" name="archive">Archiver</button>
+    </form>
+  </div>
+
+
   <div class="postContent">
 
     <div><p><?=$post->getText()?></p></div>

@@ -17,7 +17,7 @@ class PostRepository{
 
         try
         {
-            $request=$this->handle->prepare('SELECT * FROM `post`');
+            $request=$this->handle->prepare('SELECT * FROM `post` WHERE `post_posting` = 1 AND `post_archiving` = 1');
             $request->execute();
         
             return $request->fetchAll(PDO::FETCH_FUNC, 'Post::create');
@@ -28,6 +28,55 @@ class PostRepository{
         }
             
         }
+
+
+
+        public function getAllPublishedPosts(){
+
+            try
+            {
+                $request=$this->handle->prepare('SELECT * FROM `post` WHERE `post_spelling_validation` = 2   AND `post_posting` = 2 ');
+                $request->execute();
+            
+                return $request->fetchAll(PDO::FETCH_FUNC, 'Post::create');
+                
+            }
+            catch(PDOException $e){
+                var_dump('Erreur lors de la requête sql:'.$e ->getMessage());
+            }
+                
+            }
+    
+
+
+            public function getAllArchivedPosts(){
+
+                try
+                {
+                    $request=$this->handle->prepare('SELECT * FROM `post` WHERE `post_archiving` = 2');
+                    $request->execute();
+                
+                    return $request->fetchAll(PDO::FETCH_FUNC, 'Post::create');
+                    
+                }
+                catch(PDOException $e){
+                    var_dump('Erreur lors de la requête sql:'.$e ->getMessage());
+                }
+                    
+                }
+        
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         public function addNewPost($text,$image,$video,$datetime,$spellingValidation,$posting,$archiving,$idUser){
@@ -42,6 +91,42 @@ class PostRepository{
                 }
             
         }
+
+
+        public function updatePost($id,$text,$image,$video,$datetime,$spellingValidation,$posting,$archiving,$idUser)
+        {
+            try{
+            $request = $this->handle->prepare('
+            UPDATE `post`
+            SET
+                `post_text` = :post_text,
+                `post_image` = :post_image,
+                `post_video` = :post_video,
+                `post_datetime` = :post_datetime,
+                `post_spelling_validation` = :post_spelling_validation,
+                `post_posting` = :post_posting,
+                `post_archiving` = :post_archiving,
+                `id_user` = :id_user
+            WHERE `post_id` = :post_id ');
+        $request->execute([
+            ':post_id' => $id,
+            ':post_text' => $text,
+            ':post_image' => $image,
+            ':post_video' => $video,
+            ':post_datetime' => $datetime,
+            ':post_spelling_validation' => $spellingValidation,
+            ':post_posting' => $posting,
+            ':post_archiving' => $archiving,
+            ':id_user'=>$idUser]);
+             }
+        catch(PDOException $e){
+            var_dump('Erreur lors de la requête sql:'.$e ->getMessage());
+            }
+    
+        }
+    
+
+
 
 
         public function updateSpellingValidationPost($id,$spellingValidation)
@@ -64,6 +149,54 @@ class PostRepository{
             }
     
         }
+
+
+        public function updatePostingPost($id,$postingPost)
+        {
+            try
+            {
+            $request = $this->handle->prepare('
+            UPDATE `post`
+             SET
+            `post_posting` = :post_posting
+             WHERE `post_id` = :post_id ');
+            $request->execute([
+            ':post_id' => $id,
+            ':post_posting' => $postingPost
+            ]);
+            }
+            catch(PDOException $e)
+            {
+            var_dump('Erreur lors de la requête sql:'.$e ->getMessage());
+            }
+    
+        }
+
+
+        public function updateArchivingPost($id,$archivingPost)
+        {
+            try
+            {
+            $request = $this->handle->prepare('
+            UPDATE `post`
+             SET
+            `post_archiving` = :post_archiving
+             WHERE `post_id` = :post_id ');
+            $request->execute([
+            ':post_id' => $id,
+            ':post_archiving' => $archivingPost
+            ]);
+            }
+            catch(PDOException $e)
+            {
+            var_dump('Erreur lors de la requête sql:'.$e ->getMessage());
+            }
+    
+        }
+
+
+
+
 
 
 
