@@ -2,41 +2,46 @@
 
 class PostsController{
 
-private $postRepository;
-private $hashtagPostRepository;
-private $postsList;
-private $hashtagsIdList;
+    private $postRepository;
+    private $postsList;
+   
 
 
 
-public function __construct()
-{
+    public function __construct()
+    {
 
-    $this->postRepository= new PostRepository();
-    $this->hashtagPostRepository= new HashtagPostRepository();
+        $this->postRepository= new PostRepository();
+        
+    }
+
+
+   
+
+
+
+
+    function manage()
+    {
     
-}
+        $this->postsList=$this->postRepository->getAllPosts();
+        
+        if (isset($_POST['spellingValidation']) && $_POST['postId']){
+        $this->post=$this->postRepository->updateSpellingValidationPost($_POST['postId'],$_POST['spellingValidation']);
+        }
 
+        include(__DIR__."./../view/posts.php");
+    
+    }
 
-function manage()
-{
+        
 
+        
+        
+
+     
 
     
-    $posts=$this->postsList=$this->postRepository->getAllPosts();
- 
-
-    
-
-    $hashtags=$this->hashtagsIdList=$this->hashtagPostRepository->findHashtagByIdPost($post->getId());
-    var_dump($hashtags);
-
-    
-    
-
-    include(__DIR__."./../view/posts.php");
-
-}
 
 
 }

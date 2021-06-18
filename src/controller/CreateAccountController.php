@@ -2,13 +2,13 @@
 
 class CreateAccountController{
 
-   private $UserRepository;
+   private $userRepository;
     
 
     public function __construct()
     {
     
-    $this->UserRepository=new UserRepository();
+    $this->userRepository=new UserRepository();
     }
 
 
@@ -21,7 +21,7 @@ class CreateAccountController{
         {
 
             $hashedPassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
-            $this->UserRepository->add($_POST['email'],$hashedPassword,$_POST['lastname'],$_POST['firstname'],$_POST['status']);
+            $this->userRepository->addNewUser($_POST['email'],$hashedPassword,$_POST['lastname'],$_POST['firstname'],$_POST['status']);
             
         }
 

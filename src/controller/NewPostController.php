@@ -26,9 +26,9 @@ public function __construct()
 
 function manage(){
 
-    $this->hashtagsList=$this->hashtagRepository->getAll();
+    $this->hashtagsList=$this->hashtagRepository->getAllHashtags();
 
-    $this->socialNetworksList=$this->socialNetworkRepository->getAll();
+    $this->socialNetworksList=$this->socialNetworkRepository->getAllSocialNetworks();
 
 
     if(isset($_POST['savePost']) && !empty($_FILES)){
@@ -74,7 +74,7 @@ function manage(){
             }
         
 
-            $this->postRepository->addNewPost($_POST['text'],$image,$_POST['video'],$_POST['datetime'],$_POST['spellingValidation'],$_POST['archiving'],$_SESSION['id']);
+            $this->postRepository->addNewPost($_POST['text'],$image,$_POST['video'],$_POST['datetime'],$_POST['spellingValidation'],$_POST['posting'],$_POST['archiving'],$_SESSION['id']);
         }
 
     $lastId=$this->lastId=$this->postRepository->lastInsertId();

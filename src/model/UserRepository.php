@@ -45,7 +45,7 @@ class UserRepository{
 
 
 
-    public function add($email,$password,$lastname,$firstname,$status){
+    public function addNewUser($email,$password,$lastname,$firstname,$status){
 
         try{
             $request= $this->handle->prepare('INSERT INTO `user` (`user_email`, `user_password` , `user_lastname` , `user_firstname` , `user_status`)
@@ -58,7 +58,7 @@ class UserRepository{
     }
 
 
-    public function update($email,$password,$lastname,$firstname,$status,$id)
+    public function updateUser($email,$password,$lastname,$firstname,$status,$id)
     {
         try{
         $request = $this->handle->prepare('
@@ -72,19 +72,18 @@ class UserRepository{
         WHERE `user_id` = :user_id ');
     $request->execute([
         ':user_id' => $id,
-        ':user_email'=> $email,
+        ':user_email' => $email,
         ':user_password' => $password,
         ':user_lastname' => $lastname,
         ':user_firstname' => $firstname,
-        ':user_status' => $status
-         ]);
-         }
+        ':user_status'=> $status
+        ]);
+       }
     catch(PDOException $e){
         var_dump('Erreur lors de la requête sql:'.$e ->getMessage());
         }
 
     }
-
 
    
 

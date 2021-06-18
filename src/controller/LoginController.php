@@ -20,12 +20,12 @@ function manage(){
 
     $tab=$this->userRepository->findUserByEmail($email);
 
-
-if (password_verify($pass, $tab[0]->getPassword()))
+    
+if  (password_verify($pass, $tab[0]->getPassword()))
     {
         echo 'Connexion effectuée';
         $_SESSION['email']=$email;
-
+        
         $_SESSION['id']=$tab[0]->getId();
         
         header('Location: index.php');

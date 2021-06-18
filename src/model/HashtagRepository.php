@@ -13,7 +13,7 @@ class HashtagRepository{
     }
 
 
-    public function getAll()
+    public function getAllHashtags()
     {
         try
         {
@@ -29,7 +29,7 @@ class HashtagRepository{
         
     }
 
-    public function add($name){
+    public function addNewHashtag($name){
 
         try
         {
@@ -44,7 +44,7 @@ class HashtagRepository{
     }
 
 
-    public function delete($id)
+    public function deleteHashtag($id)
     {
         try
         {
@@ -60,7 +60,7 @@ class HashtagRepository{
     }
 
 
-    public function update($name,$id)
+    public function updateHashtag($name,$id)
     {
         try
         {
@@ -97,9 +97,13 @@ class HashtagRepository{
         }
     }
 
+    
+
+    }
 
 
-}
+
+
 
 
 

@@ -35,59 +35,46 @@ class HashtagPost{
 
 
 
+      
+
+
         /**
-         * Get Post as Post object
+         * Get the value of idPost
          */ 
-        public function getPost():Post
+        public function getIdPost()
         {
-            $post = new PostRepository();
-            return $post->findPostById($this->idPost);
-
-
+                return $this->idPost;
         }
 
         /**
-         * Set Post
+         * Set the value of idPost
          *
          * @return  self
          */ 
-        public function setPost(Post $post):self
+        public function setIdPost($idPost)
         {
-                $this->idPost = $post->getId();
+                $this->idPost = $idPost;
 
                 return $this;
         }
 
-
-
-        
         /**
-         * Get Hashtag as Hashtag object
+         * Get the value of idHashtag
          */ 
-        public function getHashtag():Hashtag
+        public function getIdHashtag()
         {
-            $hashtag = new HashtagRepository(); 
-            return $hashtag->findHashtagById($this->idHashtag);
-
-
+                return $this->idHashtag;
         }
 
         /**
-         * Set Hashtag
+         * Set the value of idHashtag
          *
          * @return  self
          */ 
-        public function setHashtag(Hashtag $hashtag):self
+        public function setIdHashtag($idHashtag)
         {
-                $this->idHashtag = $hashtag->getId();
+                $this->idHashtag = $idHashtag;
 
                 return $this;
         }
-
-
-        public static function create($id, $idPost, $idHashtag) {
-                return new HashtagPost($id, $idPost, $idHashtag);
-            }
-
-
 }

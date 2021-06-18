@@ -13,7 +13,7 @@ class SocialNetworkRepository{
     }
 
 
-    public function getAll(){
+    public function getAllSocialNetworks(){
         try
         {
             $request=$this->handle->prepare('SELECT * FROM `social_network`');
@@ -28,7 +28,7 @@ class SocialNetworkRepository{
             
         }
 
-    public function add($name,$icon){
+    public function addSocialNetwork($name,$icon){
 
         try{
             $request= $this->handle->prepare('INSERT INTO `social_network` (`social_network_name`, `social_network_icon`)
@@ -41,7 +41,7 @@ class SocialNetworkRepository{
     }
 
 
-    public function delete($id)
+    public function deleteSocialNetwork($id)
     {
         try{
         $request = $this->handle->prepare('DELETE FROM `social_network` WHERE `social_network_id` = :social_network_id');
@@ -55,7 +55,7 @@ class SocialNetworkRepository{
     }
 
 
-    public function update($name,$icon,$id)
+    public function updateSocialNetwork($name,$icon,$id)
     {
         try{
         $request = $this->handle->prepare('
@@ -67,7 +67,7 @@ class SocialNetworkRepository{
     $request->execute([
         ':social_network_id' => $id,
         ':social_network_name' => $name,
-        ':social_network_icon' => $icon,
+        ':social_network_icon' => $icon
         ]);
          }
     catch(PDOException $e){

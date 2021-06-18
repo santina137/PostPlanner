@@ -56,7 +56,7 @@ $lastId=$this->lastId;?>
       </div>
       
       <div class="checkbox">
-      sur 
+       sur
       <?php foreach($socialNetworks as $socialNetwork):?>
       <input type="checkbox" id="socialNetworkIcons" name="socialNetworkIcons[]" value="<?=$socialNetwork->getId()?>">
       <label for="socialNetworkIcons"><img class="social-icon" src="<?=$socialNetwork->getIcon()?>"></label>
@@ -66,6 +66,7 @@ $lastId=$this->lastId;?>
       <div> 
       <input type="hidden" name="spellingValidation" value="1">
       <input type="hidden" name="archiving" value="1">
+      <input type="hidden" name="posting" value="1">
       <input type="hidden" name="lastId" value="<?=$lastId?>">
       <button type="submit" name="savePost">Enregistrer la publication</button>
       </div> 

@@ -8,10 +8,11 @@ class Post{
     private $video;
     private $datetime;
     private $spellingValidation;
+    private $posting;
     private $archiving;
     private $idUser;
 
-    public function __construct($id, $text, $image, $video, $datetime, $spellingValidation, $archiving, $idUser)
+    public function __construct($id, $text, $image, $video, $datetime, $spellingValidation, $posting, $archiving, $idUser)
     {
         $this->id=$id;
         $this->text=$text;
@@ -19,6 +20,7 @@ class Post{
         $this->video=$video;
         $this->datetime=$datetime;
         $this->spellingValidation=$spellingValidation;
+        $this->posting=$posting;
         $this->archiving=$archiving;
         $this->idUser=$idUser;
     }
@@ -96,7 +98,22 @@ class Post{
          */ 
         public function getVideo()
         {
-                return $this->video;
+               
+              return $this->video;
+        }
+
+
+        /*Récupérer le code de la video youtube*/
+        public function getCodeVideo()
+        {
+            if ($this->video!="")
+            {
+            $url=$this->video;
+            $tableau=parse_url($url);
+            $query=$tableau['query'];
+            $code=explode("=",$query);
+            return $code[1];
+            }
         }
 
         /**
@@ -151,6 +168,29 @@ class Post{
                 return $this;
         }
 
+    /**
+         * Get the value of posting
+         */ 
+        public function getPosting()
+        {
+                return $this->posting;
+        }
+
+        /**
+         * Set the value of posting
+         *
+         * @return  self
+         */ 
+        public function setPosting($posting)
+        {
+                $this->posting = $posting;
+
+                return $this;
+        }
+
+
+
+
         /**
          * Get the value of archiving
          */ 
@@ -200,8 +240,10 @@ class Post{
 
 
 
-        public static function create($id, $text, $image, $video, $datetime, $spellingValidation, $archiving, $idUser) {
-                return new Post($id, $text, $image, $video, $datetime, $spellingValidation, $archiving, $idUser);
+        public static function create($id, $text, $image, $video, $datetime, $spellingValidation, $posting, $archiving, $idUser) {
+                return new Post($id, $text, $image, $video, $datetime, $spellingValidation, $posting, $archiving, $idUser);
             }
 
+
+    
 }

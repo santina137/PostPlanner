@@ -2,47 +2,44 @@
 
 class AccountController{
 
-        private $user;
-        private $status;
-        private $userRepository;
-    
-        
-        public function __construct()
-        {
-       
-        $this->userRepository=new UserRepository();
-        }
+private $user;
+private $status;
+private $userRepository;
+
+public function __construct()
+{
+
+$this->userRepository=new UserRepository();
+}
 
 
-        function manage()
-        {
+function manage()
+{
 
-        $this->user=$this->userRepository->findUserByEmail($_SESSION['email']);
+$this->user=$this->userRepository->findUserByEmail($_SESSION['email']);
 
-
-        if(isset($_POST['email']) && isset($_POST['password']) && isset($_POST['lastname']) && isset($_POST['firstname']) && isset($_POST['status']))
-        {
-        $this->userRepository->update($_POST['email'],$_POST['password'],$_POST['lastname'],$_POST['firstname'],$_POST['status'],$_POST['id']);
-        header("Refresh:0");
-        }
+$userTab=$this->user;
+$connectedUser=$userTab[0];
 
 
-
-        $userTab=$this->user;
-        $connectedUser=$userTab[0];
-       
-      
-            if ($connectedUser->getStatus()==1){
-                $this->status="administrateur";
-                
-            }
-            if ($connectedUser->getStatus()==2){
-               $this->status="lecteur";
-            }
-        
-
-         include(__DIR__."./../view/account.php");
-
+    if ($connectedUser->getStatus()==1){
+        $this->status="Administrateur";
 
     }
+    if ($connectedUser->getStatus()==2){
+       $this->status="Lecteur";
+    }
+
+if (isset($_POST['email'])){
+    $hashedPassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $this->userRepository->updateUser($_POST['email'],$hashedPassword,$_POST['lastname'],$_POST['firstname'],$connectedUser->getStatus(),$_POST['id']);
+    header("Refresh:0");
+}
+
+
+
+ include(__DIR__."./../view/account.php");
+
+
+}
 }

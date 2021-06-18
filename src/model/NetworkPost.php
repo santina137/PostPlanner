@@ -34,56 +34,51 @@ class NetworkPost{
         }
 
 
-        /**
-         * Get Post as Post object
-         */ 
-        public function getPost():Post
-        {
-            $post = new PostRepository();
-            return $post->findPostById($this->idPost);
-
-
-        }
-
-        /**
-         * Set Post
-         *
-         * @return  self
-         */ 
-        public function setPost(Post $post):self
-        {
-                $this->idPost = $post->getId();
-
-                return $this;
-        }
-
-
 
         
+        
+
+
+
+
+
         /**
-         * Get SocialNetwork as SocialNetwork  object
+         * Get the value of idPost
          */ 
-        public function getSocialNetwork():SocialNetwork
+        public function getIdPost()
         {
-            $socialNetwork = new SocialNetworkRepository(); 
-            return $socialNetwork->findSocialNetworkById($this->idSocialNetwork);
-
-
+                return $this->idPost;
         }
 
         /**
-         * Set SocialNetwork
+         * Set the value of idPost
          *
          * @return  self
          */ 
-        public function setSocialNetwork(SocialNetwork $socialNetwork):self
+        public function setIdPost($idPost)
         {
-                $this->idSocialNetwork = $socialNetwork->getId();
+                $this->idPost = $idPost;
 
                 return $this;
         }
 
+        /**
+         * Get the value of idSocialNetwork
+         */ 
+        public function getIdSocialNetwork()
+        {
+                return $this->idSocialNetwork;
+        }
 
+        /**
+         * Set the value of idSocialNetwork
+         *
+         * @return  self
+         */ 
+        public function setIdSocialNetwork($idSocialNetwork)
+        {
+                $this->idSocialNetwork = $idSocialNetwork;
 
-
+                return $this;
+        }
 }
